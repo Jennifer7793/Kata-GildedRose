@@ -8,15 +8,9 @@ class GildedRose
     @items.each do |item|
       case item.name
       when 'Aged Brie'
-        if item.quality < 50
-          item.quality = item.quality + 1
-          item.sell_in -= 1
-          if item.sell_in < 0
-            if item.quality < 50
-              item.quality += 1
-            end
-          end
-        end
+        item.quality += 1 if item.quality < 50
+        item.sell_in -= 1
+        item.quality += 1 if item.quality < 50 && item.sell_in < 0
       else
         if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
           if item.quality > 0
