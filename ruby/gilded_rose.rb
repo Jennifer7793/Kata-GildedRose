@@ -24,9 +24,10 @@ class GildedRose
       when 'Sulfuras, Hand of Ragnaros'
       else
         item.sell_in -= 1
-        item.quality -= 1 if item.quality > 0
-        item.quality -= 1 if item.quality > 0 && item.sell_in < 0
-        # item.quality -= item.quality > 0 && item.sell_in < 0 ? 2 : 1
+        # item.quality -= 1
+        # item.quality -= 1 if item.sell_in < 0
+        item.quality -= item.sell_in < 0 ? 2 : 1
+        item.quality = item.quality < 0 ? 0 : item.quality
       end
     end
   end
